@@ -2,14 +2,13 @@
 from src.item import Item
 import pytest
 
-@pytest.fixture
 
+@pytest.fixture
 def item1():
     return Item("Смартфон", 10000, 20)
 
 
 def test_item_init(item1):
-
     """Функция, которая тестирует конструктор"""
 
     assert item1.name == 'Смартфон'
@@ -18,15 +17,28 @@ def test_item_init(item1):
 
 
 def test_item_calculate_total_price(item1):
-
     """Функция, которая тестирует функцию calculate_total_price"""
 
     assert item1.calculate_total_price() == 200000
 
 
 def test_item_apply_discount(item1):
-
     """Функция, которая тестирует функцию apply_discount"""
 
     item1.apply_discount()
     assert item1.price == 10000.0
+
+
+def test_instantiate_from_csv():
+    """Функция, которая тестирует функцию instantiate_from_csv"""
+
+    Item.instantiate_from_csv()
+    assert len(Item.all) != 0
+
+
+def test_string_to_number():
+    """Функция, которая тестирует функцию string_to_number"""
+
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.6') == 5
