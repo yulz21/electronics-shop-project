@@ -3,6 +3,7 @@ import csv
 
 CSV_FILE_PATH = '../src/items.csv'
 
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -40,6 +41,14 @@ class Item:
         else:
             raise ValueError('Длина наименования товара превышает 10 символов')
 
+    def __repr__(self):
+        """Возвращает отладочную информацию об экземпляре класса"""
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        """Возвращает пользовательскую информацию об экземпляре класса"""
+        return f"{self.name}"
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -58,7 +67,7 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls) -> None:
         """
-        класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv
+        Класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv
         """
         Item.all = []
         with open(CSV_FILE_PATH, newline='', encoding='windows-1251') as csvfile:
@@ -69,6 +78,6 @@ class Item:
     @staticmethod
     def string_to_number(value) -> int:
         """
-        статический метод, возвращающий число из числа-строки
+        Статический метод, возвращающий число из числа-строки
         """
         return int(float(value))
