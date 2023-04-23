@@ -81,3 +81,7 @@ class Item:
         Статический метод, возвращающий число из числа-строки
         """
         return int(float(value))
+
+    def __add__(self, other):
+        """Метод для сложения количества товара"""
+        return self.quantity + other.quantity
