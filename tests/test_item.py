@@ -52,3 +52,8 @@ def test__repr__(item1):
 def test__str__(item1):
     """Функция, которая тестирует функцию __str__"""
     assert str(item1) == 'Смартфон'
+
+
+def test__add__(item1):
+    """Функция, которая тестирует функцию __add__"""
+    assert item1 + item1 == 40
